@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PERSONAJES"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        />
+    <ImageView
+       android:id="@+id/item_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/frieza"
+       android:layout_below="@id/item_name"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FRIEZA"
+        android:layout_toRightOf="@id/item_img"
+        android:layout_below="@id/item_name"
+        />
+
+
+
+
+
+</RelativeLayout>
