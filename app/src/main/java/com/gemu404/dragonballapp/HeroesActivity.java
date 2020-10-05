@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.gemu404.dragonballapp.model.Heroe;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -22,7 +23,8 @@ public class HeroesActivity extends AppCompatActivity {
     private static final String URL="https://dragon-ball-api.herokuapp.com/api/character";
     private static final String URLimage = "https://dragon-ball-api.herokuapp.com";
 
-    @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heroes);
@@ -53,6 +55,7 @@ public class HeroesActivity extends AppCompatActivity {
             //falta implementar el modelo
             //falta implementar una lista con objetos del modelo
             JSONArray root = new JSONArray(data);
+
                 for (int i = 0; i<root.length()-3;i++) {
                     JSONObject hero = root.getJSONObject(i);
                     String name = hero.getString("name");
@@ -60,6 +63,7 @@ public class HeroesActivity extends AppCompatActivity {
                     String gender = hero.getString("gender");
                     String series = hero.getString("series");
                     String status = hero.getString("status");
+                    String species = hero.getString("species");
                     String temp_image = hero.getString("image");
                     String image ;
 
@@ -73,7 +77,9 @@ public class HeroesActivity extends AppCompatActivity {
                     }
 
 
-                    Log.e("msg", i+ " | "+ name +" | " + image);
+                    Log.e("msg", species+" | "+ name +" | " +originPlanet+" | "+ gender+" | "+series+" | "+status+" | "+image);
+
+
                     //falta crear objeto con los parametros de arriba
                     //falta agregar el objeto a una lista
                 }
