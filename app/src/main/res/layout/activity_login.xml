@@ -3,6 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/namek">
+
+    <RelativeLayout
+        android:id="@+id/item_cardlogin"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_centerVertical="true"
+        >
+        <include layout="@layout/card_login"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acceder"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/button_background"
+        android:fontFamily="@font/saiyansans"
+        android:layout_alignBottom="@+id/item_cardlogin"
+        android:onClick="loginapp"/>
+
 
 </RelativeLayout>

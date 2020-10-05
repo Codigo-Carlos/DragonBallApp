@@ -1,10 +1,13 @@
 package com.gemu404.dragonballapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 
+import com.gemu404.dragonballapp.adapter.AdapterHeroe;
 import com.gemu404.dragonballapp.model.Heroe;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -52,10 +55,8 @@ public class HeroesActivity extends AppCompatActivity {
     private void processCharacters(String data) {
         try {
             //recuperar datos de la api
-            //falta implementar el modelo
-            //falta implementar una lista con objetos del modelo
             JSONArray root = new JSONArray(data);
-
+            List<Heroe> lista = new ArrayList<>();
                 for (int i = 0; i<root.length()-3;i++) {
                     JSONObject hero = root.getJSONObject(i);
                     String name = hero.getString("name");
@@ -75,14 +76,18 @@ public class HeroesActivity extends AppCompatActivity {
                         //si lo fuese, se guarda tal cual
                         image = temp_image;
                     }
-
-
-                    Log.e("msg", species+" | "+ name +" | " +originPlanet+" | "+ gender+" | "+series+" | "+status+" | "+image);
-
-
-                    //falta crear objeto con los parametros de arriba
-                    //falta agregar el objeto a una lista
+                    Heroe he = new Heroe(name,originPlanet,gender,series,status,species);
+                    lista.add(he);
                 }
+
+            RecyclerView rc = findViewById(R.id.rc_heroes);
+            AdapterHeroe ad = new AdapterHeroe(this,lista,R.layout.item_character);
+            LinearLayoutManager lm = new LinearLayoutManager(this);
+            lm.setOrientation(RecyclerView.VERTICAL);
+
+            rc.setLayoutManager(lm);
+            rc.setAdapter(ad);
+
 
         } catch (JSONException e) {
             e.printStackTrace();
