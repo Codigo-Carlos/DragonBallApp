@@ -17,7 +17,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        TextView forget = findViewById(R.id.item_recoverpass);
 
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "user: admin | password: admin", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

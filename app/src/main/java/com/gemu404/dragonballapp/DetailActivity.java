@@ -15,13 +15,13 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        String  NAME     = "get intent",
-                IMAGE    = "https://dragon-ball-api.herokuapp.com/images/Goku.jpg",
-                PLANET   = "get intent",
-                SERIES   = "get intent",
-                GENDER   = "get intent",
-                STATUS   = "get intent",
-                SPECIES  = "get intent";
+        String  NAME     = getIntent().getStringExtra("NAME"),
+                IMAGE    = getIntent().getStringExtra("IMAGE"),
+                PLANET   = getIntent().getStringExtra("PLANET"),
+                SERIES   = getIntent().getStringExtra("SERIES"),
+                GENDER   = getIntent().getStringExtra("GENDER"),
+                STATUS   = getIntent().getStringExtra("STATUS"),
+                SPECIES  = getIntent().getStringExtra("SPECIES");
 
         TextView    i_name      = findViewById(R.id.item_name),
                     i_planet    = findViewById(R.id.item_planet),

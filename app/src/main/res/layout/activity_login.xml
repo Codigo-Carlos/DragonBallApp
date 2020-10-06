@@ -10,8 +10,7 @@
         android:id="@+id/item_cardlogin"
         android:layout_width="match_parent"
         android:layout_height="370dp"
-        android:layout_centerVertical="true"
-        >
+        android:layout_centerVertical="true">
         <include layout="@layout/card_login"/>
     </RelativeLayout>
 

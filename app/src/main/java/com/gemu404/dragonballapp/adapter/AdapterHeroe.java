@@ -42,6 +42,7 @@ public class AdapterHeroe extends RecyclerView.Adapter<AdapterHeroe.HeroeHolder>
     public void onBindViewHolder(@NonNull HeroeHolder holder, int position) {
         Heroe hero = list.get(position);
         holder.item_name.setText(hero.getName());
+        holder.item_raze.setText(hero.getSpecies());
         Glide.with(activity).load(hero.getImage()).into(holder.item_img);
         holder.urlImage=hero.getImage();
 
@@ -54,7 +55,7 @@ public class AdapterHeroe extends RecyclerView.Adapter<AdapterHeroe.HeroeHolder>
 
     public class HeroeHolder extends RecyclerView.ViewHolder{
         ImageView item_img;
-        TextView item_name;
+        TextView item_name,item_raze;
         String urlImage;
         RelativeLayout item_cardChara;
 
@@ -63,20 +64,26 @@ public class AdapterHeroe extends RecyclerView.Adapter<AdapterHeroe.HeroeHolder>
             super(itemView);
             item_img = itemView.findViewById(R.id.item_img);
             item_name= itemView.findViewById(R.id.item_name);
+            item_raze= itemView.findViewById(R.id.item_raze);
             item_cardChara=itemView.findViewById(R.id.item_cardChara);
 
             item_cardChara.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
-
                     Intent intent = new Intent(activity, DetailActivity.class);
-                    intent.putExtra("NAME",item_name.getText().toString());
-                    intent.putExtra("IMAGE",urlImage);
-
-
+                    //obtiene la psicion del adapter
+                    int Pos = getAdapterPosition();
+                    //recupera el objeto en la posicion marcada
+                    Heroe he = list.get(Pos);
+                    intent.putExtra("NAME",he.getName());
+                    intent.putExtra("IMAGE",he.getImage());
+                    intent.putExtra("PLANET",he.getOriginPlanet());
+                    intent.putExtra("SERIES",he.getSeries());
+                    intent.putExtra("GENDER",he.getGender());
+                    intent.putExtra("STATUS",he.getStatus());
+                    intent.putExtra("SPECIES",he.getSpecies());
                     activity.startActivity(intent);
-
 
 
                /* Toast.makeText(activity,"Hello"+item_name.getText().toString(),

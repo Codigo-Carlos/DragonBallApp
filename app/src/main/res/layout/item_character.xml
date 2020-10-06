@@ -3,33 +3,43 @@
     android:id="@+id/item_cardChara"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@drawable/card_backround"
+    android:layout_margin="2dp">
 
-    <TextView
-        android:id="@+id/item_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PERSONAJES"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        />
+
+
     <ImageView
        android:id="@+id/item_img"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/frieza"
-       android:layout_below="@id/item_name"
-
-        />
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="15dp"/>
     <TextView
+        android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="FRIEZA"
-        android:layout_toRightOf="@id/item_img"
-        android:layout_below="@id/item_name"
-        />
+        android:layout_toRightOf="@+id/item_img"
+        android:text="Nombre"
+        android:textSize="45sp"
+        android:textColor="#000000"
+       android:layout_marginLeft="15dp"
+        android:fontFamily="@font/saiyansans"/>
+    <TextView
+        android:id="@+id/item_raze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Raza"
+        android:textSize="30sp"
+        android:textColor="#000000"
+        android:layout_below="@+id/item_name"
+        android:layout_toRightOf="@+id/item_img"
+        android:layout_marginLeft="15dp"
+        android:fontFamily="@font/saiyansans"
+        android:layout_marginTop="5dp"/>
+
 
 
 
