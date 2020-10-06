@@ -1,18 +1,23 @@
 package com.gemu404.dragonballapp.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.gemu404.dragonballapp.DetailActivity;
 import com.gemu404.dragonballapp.R;
 import com.gemu404.dragonballapp.model.Heroe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterHeroe extends RecyclerView.Adapter<AdapterHeroe.HeroeHolder> {
@@ -29,12 +34,16 @@ public class AdapterHeroe extends RecyclerView.Adapter<AdapterHeroe.HeroeHolder>
     @NonNull
     @Override
     public HeroeHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view =LayoutInflater.from(parent.getContext()).inflate(item_hereo,parent,false);
+
+        return new HeroeHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull HeroeHolder holder, int position) {
         Heroe hero = list.get(position);
         holder.item_name.setText(hero.getName());
+        Glide.with(activity).load(hero.getImage()).into(holder.item_img);
+        holder.urlImage=hero.getImage();
 
     }
 
@@ -46,13 +55,41 @@ public class AdapterHeroe extends RecyclerView.Adapter<AdapterHeroe.HeroeHolder>
     public class HeroeHolder extends RecyclerView.ViewHolder{
         ImageView item_img;
         TextView item_name;
+        String urlImage;
+        RelativeLayout item_cardChara;
+
 
         public HeroeHolder( View itemView) {
             super(itemView);
             item_img = itemView.findViewById(R.id.item_img);
             item_name= itemView.findViewById(R.id.item_name);
+            item_cardChara=itemView.findViewById(R.id.item_cardChara);
+
+            item_cardChara.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+                    Intent intent = new Intent(activity, DetailActivity.class);
+                    intent.putExtra("NAME",item_name.getText().toString());
+                    intent.putExtra("IMAGE",urlImage);
+
+
+                    activity.startActivity(intent);
+
+
+
+               /* Toast.makeText(activity,"Hello"+item_name.getText().toString(),
+                       Toast.LENGTH_LONG).show();*/
+
+
+
+
+                }
+            });
         }
     }
+
 
 
 

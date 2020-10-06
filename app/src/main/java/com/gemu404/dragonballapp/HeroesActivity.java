@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -31,6 +32,9 @@ public class HeroesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heroes);
+        Intent intent= new Intent(this,DetailActivity.class);
+        startActivity(intent);
+
         //lamada a proceso para recuperar datos
         processHTTP();
         Log.e ("WARNING", "si lees esto entonces compila bien");
@@ -55,10 +59,12 @@ public class HeroesActivity extends AppCompatActivity {
     private void processCharacters(String data) {
         try {
             //recuperar datos de la api
-            JSONArray root = new JSONArray(data);
+            JSONObject root = new JSONObject(data);
+            JSONArray results = root.getJSONArray("results");
             List<Heroe> lista = new ArrayList<>();
-                for (int i = 0; i<root.length()-3;i++) {
-                    JSONObject hero = root.getJSONObject(i);
+                for (int i = 0; i<results.length()-3;i++) {
+                    JSONObject hero = results.getJSONObject(i);
+
                     String name = hero.getString("name");
                     String originPlanet = hero.getString("originPlanet");
                     String gender = hero.getString("gender");
@@ -76,7 +82,7 @@ public class HeroesActivity extends AppCompatActivity {
                         //si lo fuese, se guarda tal cual
                         image = temp_image;
                     }
-                    Heroe he = new Heroe(name,originPlanet,gender,series,status,species);
+                    Heroe he = new Heroe(name,originPlanet,gender,series,status,species,image);
                     lista.add(he);
                 }
 
