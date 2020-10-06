@@ -32,8 +32,7 @@ public class HeroesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heroes);
-        Intent intent= new Intent(this,DetailActivity.class);
-        startActivity(intent);
+
 
         //lamada a proceso para recuperar datos
         processHTTP();
@@ -59,11 +58,10 @@ public class HeroesActivity extends AppCompatActivity {
     private void processCharacters(String data) {
         try {
             //recuperar datos de la api
-            JSONObject root = new JSONObject(data);
-            JSONArray results = root.getJSONArray("results");
+            JSONArray root = new JSONArray(data);
             List<Heroe> lista = new ArrayList<>();
-                for (int i = 0; i<results.length()-3;i++) {
-                    JSONObject hero = results.getJSONObject(i);
+                for (int i = 0; i<root.length()-3;i++) {
+                    JSONObject hero = root.getJSONObject(i);
 
                     String name = hero.getString("name");
                     String originPlanet = hero.getString("originPlanet");
@@ -84,13 +82,11 @@ public class HeroesActivity extends AppCompatActivity {
                     }
                     Heroe he = new Heroe(name,originPlanet,gender,series,status,species,image);
                     lista.add(he);
-                }
-
+                  }
             RecyclerView rc = findViewById(R.id.rc_heroes);
             AdapterHeroe ad = new AdapterHeroe(this,lista,R.layout.item_character);
             LinearLayoutManager lm = new LinearLayoutManager(this);
             lm.setOrientation(RecyclerView.VERTICAL);
-
             rc.setLayoutManager(lm);
             rc.setAdapter(ad);
 
