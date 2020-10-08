@@ -26,9 +26,7 @@ public class NointernetActivity extends AppCompatActivity {
             Intent intent= new Intent(this,LoginActivity.class);
             startActivity(intent);
         } else {
-            Intent intent= new Intent(this,NointernetActivity.class);
             Toast.makeText(this, "No conectado a internet, intente mas tarde", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
         }
 
 
